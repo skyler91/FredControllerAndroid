@@ -11,7 +11,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import okhttp3.*
 import org.json.JSONObject
@@ -63,15 +62,6 @@ class GoogleLoginActivity() : AppCompatActivity() {
         //mGoogleSignInClient.signOut()
 
         silentSignInToGoogle()
-/*
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        if (account != null) {
-            // Already signed in!
-            // TODO: Prompt for re-login?
-        }
-
-        signInToGoogle()
- */
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -116,7 +106,6 @@ class GoogleLoginActivity() : AppCompatActivity() {
         httpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 updateFredStatus(FredStatus.UNKNOWN,"Failed to get Fred status: (${e.message})")
-                //Toast.makeText(thisActivity, "Failed to get Fred status!", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call, response: Response) {
