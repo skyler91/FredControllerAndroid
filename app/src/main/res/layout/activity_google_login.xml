@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".GoogleLoginActivity">
 
+    <ProgressBar
+        android:id="@+id/statusSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <LinearLayout
         android:id="@+id/statusLayout"
         android:layout_width="wrap_content"
@@ -13,7 +22,7 @@
         android:layout_gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/statusSpinner">
         <TextView
             android:id="@+id/statusTitle"
             android:layout_width="wrap_content"

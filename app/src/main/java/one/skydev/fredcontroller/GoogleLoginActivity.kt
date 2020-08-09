@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -35,11 +37,26 @@ class GoogleLoginActivity() : AppCompatActivity() {
             val bundle = msg.data
             val status = bundle.get(STATUS_KEY) as FredStatus
 
-            findViewById<TextView>(R.id.statusTextView).text = when (status) {
-                FredStatus.UNKNOWN -> getString(R.string.status_unknown)
-                FredStatus.ONLINE -> getString(R.string.status_online)
-                FredStatus.OFFLINE -> getString(R.string.status_offline)
-                FredStatus.LOADING -> getString(R.string.status_loading)
+            val statusTextView = findViewById<TextView>(R.id.statusTextView)
+            val statusSpinner = findViewById<ProgressBar>(R.id.statusSpinner)
+
+            when(status) {
+                FredStatus.UNKNOWN -> {
+                    statusTextView.text = getString(R.string.status_unknown)
+                    statusSpinner.visibility = View.INVISIBLE
+                }
+                FredStatus.ONLINE -> {
+                    statusTextView.text = getString(R.string.status_online)
+                    statusSpinner.visibility = View.INVISIBLE
+                }
+                FredStatus.OFFLINE -> {
+                    statusTextView.text = getString(R.string.status_offline)
+                    statusSpinner.visibility = View.INVISIBLE
+                }
+                FredStatus.LOADING -> {
+                    statusTextView.text = getString(R.string.status_loading)
+                    statusSpinner.visibility = View.VISIBLE
+                }
             }
 
             findViewById<TextView>(R.id.statusMessage).text = bundle.get(MSG_KEY) as String
