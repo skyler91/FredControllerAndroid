@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import android.widget.TextView
@@ -22,6 +23,8 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
+import java.time.LocalDateTime
+import java.util.*
 
 class MainActivity() : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -68,31 +71,42 @@ class MainActivity() : AppCompatActivity() {
 
             val statusTextView = findViewById<TextView>(R.id.statusTextView)
             val statusSpinner = findViewById<ProgressBar>(R.id.statusSpinner)
+            val statusIcon = findViewById<ImageView>(R.id.statusIcon)
 
             when(status) {
                 FredStatus.UNKNOWN -> {
                     statusTextView.text = getString(R.string.status_unknown)
                     statusSpinner.visibility = View.INVISIBLE
+                    statusIcon.setImageResource(R.drawable.ic_offline)
+                    statusIcon.visibility = View.VISIBLE
                 }
                 FredStatus.ONLINE -> {
                     statusTextView.text = getString(R.string.status_online)
                     statusSpinner.visibility = View.INVISIBLE
+                    statusIcon.setImageResource(R.drawable.ic_online)
+                    statusIcon.visibility = View.VISIBLE
                 }
                 FredStatus.OFFLINE -> {
                     statusTextView.text = getString(R.string.status_offline)
                     statusSpinner.visibility = View.INVISIBLE
+                    statusIcon.setImageResource(R.drawable.ic_offline)
+                    statusIcon.visibility = View.VISIBLE
                 }
                 FredStatus.LOADING -> {
                     statusTextView.text = getString(R.string.status_loading)
                     statusSpinner.visibility = View.VISIBLE
+                    statusIcon.visibility = View.INVISIBLE
                 }
                 FredStatus.NO_GOOGLE_AUTH -> {
                     statusTextView.text = getString(R.string.status_no_google_auth)
                     statusSpinner.visibility = View.INVISIBLE
+                    statusIcon.setImageResource(R.drawable.ic_offline)
+                    statusIcon.visibility = View.VISIBLE
                 }
             }
 
             findViewById<TextView>(R.id.statusMessage).text = bundle.get(MSG_KEY) as String
+            findViewById<TextView>(R.id.lastUpdatedTime).text = Calendar.getInstance().time.toString()
         }
     }
 
@@ -182,7 +196,6 @@ class MainActivity() : AppCompatActivity() {
                 }
             }
         })
-
      }
 
     private fun updateFredStatus(status : FredStatus, msg : String = "") {

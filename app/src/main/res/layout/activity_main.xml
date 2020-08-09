@@ -13,7 +13,18 @@
         android:layout_gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/statusIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="@+id/statusSpinner"
+        app:layout_constraintLeft_toLeftOf="@+id/statusSpinner"
+        app:layout_constraintRight_toRightOf="@+id/statusSpinner"
+        app:layout_constraintBottom_toBottomOf="@+id/statusSpinner"
+        android:src="@drawable/ic_offline" />
 
     <LinearLayout
         android:id="@+id/statusLayout"
@@ -38,6 +49,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id='@+id/statusMessageLayout'
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -49,6 +61,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <TextView
+            android:id="@+id/lastUpdatedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_updated"/>
+        <TextView
+            android:id="@+id/lastUpdatedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

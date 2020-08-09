@@ -9,4 +9,5 @@
     <string name="status_title">Status:</string>
     <string name="google_login">Sign in to Google</string>
     <string name="google_logout">Log off Google</string>
+    <string name="last_updated">Last updated:</string>
 </resources>
