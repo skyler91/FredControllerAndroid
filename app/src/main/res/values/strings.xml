@@ -4,5 +4,9 @@
     <string name="status_online">Online</string>
     <string name="status_offline">Offline</string>
     <string name="status_loading">Loading…</string>
+    <string name="status_no_google_auth">Not signed in to Google</string>
+    <string name="message_no_google_auth">Please sign in to Google</string>
     <string name="status_title">Status:</string>
+    <string name="google_login">Sign in to Google</string>
+    <string name="google_logout">Log off Google</string>
 </resources>

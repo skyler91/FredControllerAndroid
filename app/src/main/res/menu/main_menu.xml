@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_add"
-        app:showAsAction="ifRoom"
-        android:title="Add" /> -->
+
     <item
         android:id="@+id/action_login"
         app:showAsAction="never"
-        android:title="Login to Google" />
+        android:title="@string/google_login" />
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_logout"
         app:showAsAction="never"
-        android:title="Settings"/>
-    <item
-        android:id="@+id/action_test"
-        app:showAsAction="never"
-        android:title="Test"/>
+        android:title="@string/google_logout"
+        android:visible="false"/>
 </menu>
