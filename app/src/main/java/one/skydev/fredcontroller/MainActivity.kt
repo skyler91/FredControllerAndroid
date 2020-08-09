@@ -60,9 +60,15 @@ class MainActivity() : AppCompatActivity() {
                 signOutFromGoogle()
                 true
             }
+            R.id.action_refresh -> {
+                getFredStatus()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private val refreshHandler = Handler(Looper.getMainLooper())
 
     private val updateFredStatusHandler : Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
@@ -163,12 +169,25 @@ class MainActivity() : AppCompatActivity() {
         if (accountObserver.value != null){
             // Login successful!
             getFredStatus()
+            // TODO: Create setting for refresh delay
+            refreshHandler.removeCallbacksAndMessages(null)
+            refreshHandler.post(object : Runnable {
+                override fun run() {
+                    getFredStatus()
+                    refreshHandler.postDelayed(this, 5000)
+                }
+            })
         } else {
             updateFredStatus(FredStatus.NO_GOOGLE_AUTH, getString(R.string.message_no_google_auth))
+            refreshHandler.removeCallbacksAndMessages(null)
         }
     }
 
     private fun getFredStatus() {
+        if (accountObserver.value == null) {
+            return
+        }
+
         updateFredStatus(FredStatus.LOADING)
         val url = URL("https://us-central1-rythmaddon.cloudfunctions.net/fredstatus")
         val httpClient = OkHttpClient()
@@ -226,5 +245,6 @@ class MainActivity() : AppCompatActivity() {
     private fun updateLoginMenuItems() {
         optionsMenu?.findItem(R.id.action_login)?.isVisible = accountObserver.value == null
         optionsMenu?.findItem(R.id.action_logout)?.isVisible = accountObserver.value != null
+        optionsMenu?.findItem(R.id.action_refresh)?.isVisible = accountObserver.value != null
     }
 }

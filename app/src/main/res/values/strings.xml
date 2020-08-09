@@ -10,4 +10,6 @@
     <string name="google_login">Sign in to Google</string>
     <string name="google_logout">Log off Google</string>
     <string name="last_updated">Last updated:</string>
+    <string name="refresh">Refresh</string>
+    <string name="key_refresh_delay">refresh_delay</string>
 </resources>

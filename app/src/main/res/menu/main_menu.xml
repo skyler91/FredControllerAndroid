@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_refresh"
+        app:showAsAction="ifRoom"
+        android:title="@string/refresh"
+        android:visible="false"/>
+    <item
         android:id="@+id/action_login"
         app:showAsAction="never"
         android:title="@string/google_login" />
